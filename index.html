@@ -480,6 +480,9 @@
                     } else {
                         alert(response.message);
                     }
+                },
+                "error" : function () {
+                    alert("已提交！")
                 }
             });
         });
@@ -495,6 +498,9 @@
                     if (response.code == 'success') {
                         that.addClass('active');
                     }
+                },
+                "error" : function (){
+                    that.addClass('active');
                 }
             });
         });

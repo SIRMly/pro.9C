@@ -6,11 +6,8 @@ $(function () {
         e.preventDefault();
     };
     //document.getElementById("audio-bg").play();
-    //document.addEventListener("WeixinJSBridgeReady", function () {
-    //    WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-    //        document.getElementById('audio-bg').play();
-    //    });
-    //}, false);
+    document.addEventListener("WeixinJSBridgeReady", function () {
+    }, false);
     PreLoadImg([
         "img/arrow.png",
         "img/bottle-man1.png",
@@ -113,17 +110,14 @@ $(function () {
             document.getElementById("audio-bg").play();
             document.getElementById("audio1-1").play();
             document.getElementById("audio1-2").play();
-        }, 200);
-        
-        setTimeout(page1,6200);
-
-
-        setTimeout(function (){
-            document.getElementById("audio2-1").play();
             WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                document.getElementById("audio2-1").play();
+                document.getElementById("audio-bg").play();
+                document.getElementById("audio1-1").play();
+                document.getElementById("audio1-2").play();
             })
-        }, 8400);
+        }, 200);
+
+        setTimeout(page1,6200);
         document.addEventListener("WeixinJSBridgeReady", function () {
             WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
                 document.getElementById('audio-bg').play();
@@ -135,6 +129,12 @@ $(function () {
       function page1(){
           document.getElementById("audio1-1").pause();
           document.getElementById("audio1-2").pause();
+          setTimeout(function (){
+              document.getElementById("audio2-1").play();
+              WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                  document.getElementById("audio2-1").play();
+              })
+          }, 1800);
           var page1_bottleTop = 9, page1_bottleLeft = 28, g_bottle=-12, page1_bottleOpa=0;
           var page1_bottle=setInterval(function () {
                 $("#page1-bottle").css({
@@ -160,24 +160,27 @@ $(function () {
     function page2Animate(){
         setTimeout(function(){
             $("#page2-cai").addClass("page2-caiMove");
-        },2700)
+        },2700);
         setTimeout(function(){
             $("#page2-cai").removeClass("page2-caiMove");
             $("#page2-word1").stop().fadeOut(500);
             $("#page2-yao").stop().fadeIn(500);
-        },6200)
+        },6200);
         setTimeout(function(){
             $("#page2-bottle").addClass("bottleRotate");
             var myShakeEvent = new Shake({
                 threshold: 10
             });
             myShakeEvent.start();
-            window.addEventListener('shake', shakeEventDidOccur, false);
+            //window.addEventListener('shake', shakeEventDidOccur, false);
+            window.addEventListener('click', shakeEventDidOccur, false);
             function shakeEventDidOccur() {
                 $("#page2-yao").hide();
+                $("#page2-bottle").removeClass("bottleRotate");
+                document.getElementById("audio2-2").play();
                 var pi_bg_po=5, pi_position=["3%","4%","14%","29%","37%","37%"];
                 $("#page2-shuo").show();
-                var pipaMove=setInterval(function () {
+                var pipaMove = setInterval(function () {
                     $("#page2-shuo").css({
                         "background-position-y" : pi_bg_po*25+"%",
                         "top" : pi_position[pi_bg_po]
@@ -189,15 +192,14 @@ $(function () {
                 },70);
                 setTimeout(function () {
                     $("#page2-cai").addClass("page2-caiMove");
-                },100)
+                }, 100);
+                //window.removeEventListener('shake', shakeEventDidOccur, false);
+                window.removeEventListener('click', shakeEventDidOccur, false);
+                WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
                     document.getElementById("audio2-2").play();
-                    WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                        document.getElementById("audio2-2").play();
-                    })
-                window.removeEventListener('shake', shakeEventDidOccur, false);
-                $("#page2-bottle").removeClass("bottleRotate");
+                });
             }
-        },6600)
+        },6600);
         /*盖*/
         var page2_gai_left= 48, page2_gai_top=55, g_gai=-2;
         setTimeout(function () {
@@ -244,41 +246,38 @@ $(function () {
         });
 
     }
+    var page5audio= document.getElementById("page5-audio");
         touch.on(".page4","swipeleft", function (){
             document.getElementById("audio4").pause();
             $(".page4").fadeOut(400);
             $(".page5").stop().delay(300).fadeIn(400);
-            var page5audio= document.getElementById("page5-audio");
                 setTimeout(function (){
                     $(".page5-con").fadeIn(300);
                     page5audio.play();
                     WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
                         page5audio.play();
                     })
-                }, 3500)
+                }, 3300)
         });
         touch.on(".page5","swipeleft", function (){
-            document.getElementById("page5-audio").pause();
+            page5audio.pause();
             $(".page5").fadeOut(400);
             $(".page6").stop().fadeIn(400);
-            var page6audio=document.getElementById("page5-audio");
-            page6audio.play();
+            page5audio.play();
         });
         touch.on(".page6","swipeleft", function (){
-            document.getElementById("page5-audio").pause();
+            page5audio.pause();
             $(".page6").fadeOut(400);
-            $(".page7").stop().fadeIn(400)
-            var page7audio=document.getElementById("page5-audio");
-            page7audio.play();
+            $(".page7").stop().fadeIn(400);
+            page5audio.play();
         });
 
 
         touch.on(".page7","swipeleft", function (){
-            document.getElementById("page5-audio").pause();
+            page5audio.pause();
             $(".page7").fadeOut(400);
-            $(".page8").stop().fadeIn(400)
-            var page8audio=document.getElementById("page5-audio");
-            page8audio.play();
+            $(".page8").stop().fadeIn(400);
+            page5audio.play();
         });
 
         touch.on(".page8","swipeleft", function (){

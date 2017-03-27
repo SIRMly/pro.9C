@@ -5,8 +5,12 @@ $(function () {
     document.ontouchmove = function (e) {
         e.preventDefault();
     };
-
-    document.getElementById("audio-bg").play();
+    //document.getElementById("audio-bg").play();
+    //document.addEventListener("WeixinJSBridgeReady", function () {
+    //    WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+    //        document.getElementById('audio-bg').play();
+    //    });
+    //}, false);
     PreLoadImg([
         "img/arrow.png",
         "img/bottle-man1.png",
@@ -102,12 +106,17 @@ $(function () {
         "img/sweet1.png",
         "img/sweet2.png"
     ], function () {
-       $(".loading").fadeOut(200);
-        $(".page1").fadeIn(400);
+        $(".loading").fadeOut(200, function () {
+            $(".page1").fadeIn(400);
+        });
+        setTimeout(function () {
+            document.getElementById("audio-bg").play();
+            document.getElementById("audio1-1").play();
+            document.getElementById("audio1-2").play();
+        }, 200);
+        
         setTimeout(page1,6200);
-        document.getElementById("audio-bg").play();
-        document.getElementById("audio1-1").play();
-        document.getElementById("audio1-2").play();
+
 
         setTimeout(function (){
             document.getElementById("audio2-1").play();

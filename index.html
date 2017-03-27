@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>9°啤葩说</title>
+    <meta name="author" content="SIRMly">
+    <meta name="renderer" content="webkit">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          name="viewport">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/rotate.css">
+</head>
+<body>
+<div class="container">
+    <audio src="audio/bg.mp3" id="audio-bg" preload="auto" volume="0.8" loop></audio>
+    <div class="page loading">
+        <div id="loading-gas">
+            <img src="img/loading-gas4.png" alt="" id="loading-gas4">
+            <img src="img/loading-gas3.png" alt="" id="loading-gas3">
+            <img src="img/loading-gas2.png" alt="" id="loading-gas2">
+            <img src="img/loading-gas1.png" alt="" id="loading-gas1">
+        </div>
+        <div id="loading-bottle"></div>
+        <div id="loading-word"></div>
+        <div id="loading-progress">
+            <div id="progress"></div>
+        </div>
+    </div>
+    <div class="page page1 hide">
+        <audio src="audio/1-1.mp3" id="audio1-1" preload="auto"></audio>
+        <audio src="audio/1-2.mp3" id="audio1-2" preload="auto"></audio>
+        <div class="sun">
+            <div class="sun-out"></div>
+        </div>
+        <div class="cloud1">
+            <img src="img/cloud1.png" alt="">
+        </div>
+        <div class="cloud2">
+            <img src="img/cloud2.png" alt="">
+        </div>
+        <div id="page1-floor"></div>
+        <div id="page1-animate">
+            <div id="bottle-man">
+                <div id="gas"></div>
+                <div id="sweet"></div>
+            </div>
+            <div id="page1-box">
+                <div class="page1-bottle1"></div>
+                <div class="page1-bottle2"></div>
+                <div class="page1-bottle3"></div>
+                <div class="page1-bottle4"></div>
+                <div id="page1-bottle"></div>
+                <div id="page1-box-font"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="page page2 hide">
+        <audio src="audio/2-1.mp3" id="audio2-1" preload="auto"></audio>
+        <audio src="audio/2-2.mp3" id="audio2-2" preload="auto"></audio>
+        <div id="page2-word1"></div>
+        <div id="page2-yao"></div>
+        <div id="page2-shuo">
+        </div>
+        <div id="page2-cai"></div>
+        <div id="page2-floor">
+            <div id="page2-bottle">
+            </div>
+        </div>
+
+        <div id="page2-gai"></div>
+        <div class="arrow"></div>
+    </div>
+    <div class="page page3 hide">
+        <audio src="audio/3.mp3" preload="auto" class="3audio" id="page3-audio"></audio>
+        <audio src="audio/3-2.mp3" preload="auto" class="3audio" id="page3-audio2"></audio>
+        <div class="sun">
+            <div class="sun-out"></div>
+        </div>
+        <div class="cloud3">
+            <img src="img/cloud3.png" alt="">
+        </div>
+        <div class="cloud2">
+            <img src="img/cloud2.png" alt="">
+        </div>
+        <div class="cloud2 cloud2-2">
+            <img src="img/cloud2.png" alt="">
+        </div>
+        <div id="page3-word-wrapper">
+            <div class="page3-word page3-word1"></div>
+            <div class="page3-word page3-word2"></div>
+            <!--            <div class="page3-word page3-word3"></div>-->
+            <div class="page3-word page3-word4"></div>
+        </div>
+        <div id="page3-msg">
+            <div id="page3-msg-red"></div>
+            <div id="page3-msg-po"></div>
+        </div>
+        <div id="page3-person"></div>
+        <div class="arrow"></div>
+    </div>
+    <div class="page page4 hide">
+        <audio src="audio/4.mp3" id="audio4" preload="auto"></audio>
+        <div id="page4-pic">
+            <div class="page4-water"></div>
+        </div>
+        <div class="page4-word-wrapper">
+            <div class="page4-word page4-word1"></div>
+            <div class="page4-word page4-word2"></div>
+            <div class="page4-word page4-word3"></div>
+            <div class="page4-word page4-word4"></div>
+            <div class="page4-word page4-word5"></div>
+            <div class="page4-word6"></div>
+        </div>
+        <div class="arrow"></div>
+    </div>
+    <div class="page page5 hide">
+        <audio src="audio/5.mp3" preload="auto" id="page5-audio"></audio>
+        <div id="page5-bg">
+            <div id="flag"></div>
+            <div class="page5-word1"></div>
+            <div class="page5-word2"></div>
+            <div class="page5-word3"></div>
+            <div class="page5-word4"></div>
+            <div class="page5-con">
+                <div class="page5-bottle"></div>
+                <div class="page5-add"></div>
+                <div class="page5-question">
+                    <div class="cube">
+                        <div class="edge edge1"></div>
+                        <div class="edge edge2"></div>
+                        <div class="edge edge3"></div>
+                        <div class="edge edge4"></div>
+                        <div class="edge edge5"></div>
+                        <div class="edge edge6"></div>
+                        <div class="edge edge7"></div>
+                        <div class="edge edge8"></div>
+                        <div class="edge edge9"></div>
+                        <div class="edge edge10"></div>
+                        <div class="edge edge11"></div>
+                        <div class="edge edge12"></div>
+                        <div class="edge edge13"></div>
+                        <div class="edge edge14"></div>
+                        <div class="edge edge15"></div>
+                        <div class="edge edge16"></div>
+                        <div class="edge edge17"></div>
+                    </div>
+                </div>
+                <div class="page5-add page5-add2"></div>
+                <div class="page5-question2">
+                    <div class="cube">
+                        <div class="edge edge1"></div>
+                        <div class="edge edge4"></div>
+                        <div class="edge edge2"></div>
+                        <div class="edge edge6"></div>
+                        <div class="edge edge5"></div>
+                        <div class="edge edge3"></div>
+                        <div class="edge edge7"></div>
+                        <div class="edge edge8"></div>
+                        <div class="edge edge10"></div>
+                        <div class="edge edge12"></div>
+                        <div class="edge edge11"></div>
+                        <div class="edge edge9"></div>
+                        <div class="edge edge13"></div>
+                        <div class="edge edge16"></div>
+                        <div class="edge edge14"></div>
+                        <div class="edge edge17"></div>
+                        <div class="edge edge15"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="arrow"></div>
+    </div>
+    <div class="page page6 hide">
+        <div class="page6-food-w">
+            <div class="page6-food">
+                <div class="page6-food-out page6-food1-out"></div>
+                <div class="page6-food-in page6-food1-in"></div>
+            </div>
+            <br>
+
+            <div class="page6-food page6-food2">
+                <div class="page6-food-out page6-food2-out"></div>
+                <div class="page6-food-in page6-food2-in"></div>
+            </div>
+            <div class="page6-food page6-food3">
+                <div class="page6-food-out page6-food3-out"></div>
+                <div class="page6-food-in page6-food3-in"></div>
+            </div>
+        </div>
+        <div class="page6-word"></div>
+        <div class="page5-con">
+            <div class="page5-bottle"></div>
+            <div class="page5-add"></div>
+            <div class="page5-question">
+                <div class="cube">
+                    <div class="edge edge7"></div>
+                    <div class="edge edge1"></div>
+                    <div class="edge edge4"></div>
+                    <div class="edge edge2"></div>
+                    <div class="edge edge6"></div>
+                    <div class="edge edge5"></div>
+                    <div class="edge edge3"></div>
+                    <div class="edge edge8"></div>
+                    <div class="edge edge10"></div>
+                    <div class="edge edge12"></div>
+                    <div class="edge edge11"></div>
+                    <div class="edge edge9"></div>
+                    <div class="edge edge13"></div>
+                    <div class="edge edge16"></div>
+                    <div class="edge edge14"></div>
+                    <div class="edge edge17"></div>
+                    <div class="edge edge15"></div>
+                </div>
+            </div>
+            <div class="page5-add page5-add2"></div>
+            <div class="page5-question2">
+                <div class="cube">
+                    <div class="edge edge9"></div>
+                    <div class="edge edge5"></div>
+                    <div class="edge edge7"></div>
+                    <div class="edge edge6"></div>
+                    <div class="edge edge4"></div>
+                    <div class="edge edge1"></div>
+                    <div class="edge edge8"></div>
+                    <div class="edge edge3"></div>
+                    <div class="edge edge10"></div>
+                    <div class="edge edge14"></div>
+                    <div class="edge edge12"></div>
+                    <div class="edge edge2"></div>
+                    <div class="edge edge11"></div>
+                    <div class="edge edge13"></div>
+                    <div class="edge edge16"></div>
+                    <div class="edge edge15"></div>
+                    <div class="edge edge17"></div>
+                </div>
+            </div>
+        </div>
+        <div class="arrow"></div>
+    </div>
+    <div class="page page7 hide">
+        <div class="page6-food-w">
+            <div class="page6-food">
+                <div class="page6-food-out page6-food1-out"></div>
+                <div class="page6-food-in page6-food1-in"></div>
+            </div>
+            <br>
+
+            <div class="page6-food page6-food2">
+                <div class="page6-food-out page7-food2-out"></div>
+                <div class="page6-food-in page7-food2-in"></div>
+            </div>
+            <div class="page6-food page6-food3">
+                <div class="page6-food-out page7-food3-out"></div>
+                <div class="page6-food-in page7-food3-in"></div>
+            </div>
+        </div>
+        <div class="page7-word"></div>
+        <div class="page5-con">
+            <div class="page5-bottle"></div>
+            <div class="page5-add"></div>
+            <div class="page5-question">
+                <div class="cube">
+                    <div class="edge edge10"></div>
+                    <div class="edge edge9"></div>
+                    <div class="edge edge5"></div>
+                    <div class="edge edge7"></div>
+                    <div class="edge edge6"></div>
+                    <div class="edge edge4"></div>
+                    <div class="edge edge1"></div>
+                    <div class="edge edge8"></div>
+                    <div class="edge edge3"></div>
+                    <div class="edge edge14"></div>
+                    <div class="edge edge12"></div>
+                    <div class="edge edge2"></div>
+                    <div class="edge edge11"></div>
+                    <div class="edge edge13"></div>
+                    <div class="edge edge16"></div>
+                    <div class="edge edge15"></div>
+                    <div class="edge edge17"></div>
+                </div>
+            </div>
+            <div class="page5-add page5-add2"></div>
+            <div class="page5-question2">
+                <div class="cube">
+                    <div class="edge edge3"></div>
+                    <div class="edge edge7"></div>
+                    <div class="edge edge1"></div>
+                    <div class="edge edge4"></div>
+                    <div class="edge edge2"></div>
+                    <div class="edge edge6"></div>
+                    <div class="edge edge5"></div>
+                    <div class="edge edge8"></div>
+                    <div class="edge edge10"></div>
+                    <div class="edge edge12"></div>
+                    <div class="edge edge11"></div>
+                    <div class="edge edge9"></div>
+                    <div class="edge edge13"></div>
+                    <div class="edge edge16"></div>
+                    <div class="edge edge14"></div>
+                    <div class="edge edge17"></div>
+                    <div class="edge edge15"></div>
+                </div>
+            </div>
+        </div>
+        <div class="arrow"></div>
+    </div>
+    <div class="page page8 hide">
+        <div class="page6-food-w">
+            <div class="page6-food">
+                <div class="page6-food-out page6-food1-out"></div>
+                <div class="page6-food-in page6-food1-in"></div>
+            </div>
+            <br>
+
+            <div class="page6-food page6-food2">
+                <div class="page6-food-out page8-food2-out"></div>
+                <div class="page6-food-in page8-food2-in"></div>
+            </div>
+            <div class="page6-food page6-food3">
+                <div class="page6-food-out page8-food3-out"></div>
+                <div class="page6-food-in page8-food3-in"></div>
+            </div>
+        </div>
+        <div class="page8-word"></div>
+        <div class="page5-con">
+            <div class="page5-bottle"></div>
+            <div class="page5-add"></div>
+            <div class="page5-question">
+                <div class="cube">
+                    <div class="edge edge11"></div>
+                    <div class="edge edge10"></div>
+                    <div class="edge edge9"></div>
+                    <div class="edge edge5"></div>
+                    <div class="edge edge7"></div>
+                    <div class="edge edge6"></div>
+                    <div class="edge edge4"></div>
+                    <div class="edge edge1"></div>
+                    <div class="edge edge8"></div>
+                    <div class="edge edge3"></div>
+                    <div class="edge edge14"></div>
+                    <div class="edge edge12"></div>
+                    <div class="edge edge2"></div>
+                    <div class="edge edge13"></div>
+                    <div class="edge edge16"></div>
+                    <div class="edge edge15"></div>
+                    <div class="edge edge17"></div>
+                </div>
+            </div>
+            <div class="page5-add page5-add2"></div>
+            <div class="page5-question2">
+                <div class="cube">
+                    <div class="edge edge17"></div>
+                    <div class="edge edge3"></div>
+                    <div class="edge edge7"></div>
+                    <div class="edge edge1"></div>
+                    <div class="edge edge4"></div>
+                    <div class="edge edge2"></div>
+                    <div class="edge edge6"></div>
+                    <div class="edge edge5"></div>
+                    <div class="edge edge8"></div>
+                    <div class="edge edge10"></div>
+                    <div class="edge edge12"></div>
+                    <div class="edge edge11"></div>
+                    <div class="edge edge9"></div>
+                    <div class="edge edge13"></div>
+                    <div class="edge edge16"></div>
+                    <div class="edge edge14"></div>
+                    <div class="edge edge15"></div>
+                </div>
+            </div>
+        </div>
+        <div class="arrow"></div>
+    </div>
+    <div class="page page9 hide">
+        <div class="page9-corner"></div>
+        <div class="page9-word">
+            <div class="page9-cai"></div>
+        </div>
+        <div class="page9-con">
+            <div class="page9-squ page9-squ1">
+                <div class="page9-bottle"></div>
+            </div>
+            <div class="page6-add"></div>
+            <div class="page9-squ page9-squ2">
+                <div class="page9-question"></div>
+            </div>
+            <div class="page6-add"></div>
+            <div class="page9-squ page9-squ3">
+                <div class="page9-question page9-question2"></div>
+            </div>
+            <div class="page9-btns">
+                <div class="page9-btn-w">
+                    <a href="javascript:;" onclick="MtaH5.clickStat('1')" class="page9-btn page9-btn1"></a>
+                </div>
+                <!--<div class="page9-btn-w">
+                    <a href="javascript:;" class="page9-btn page9-btn2"></a>
+                </div>-->
+                <div class="page9-btn-w">
+                    <a href="javascript:;" onclick="MtaH5.clickStat('2')" class="page9-btn page9-btn3"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page page10 opa0">
+        <div class="page10-top"></div>
+        <div class="textarea-w">
+            <textarea id="content" name="" class="page10-msg"></textarea>
+            <input type="hidden" name="touser" id="touser" value="0">
+            <button type="button" class="page10-btn"></button>
+        </div>
+        <div id="wrapper">
+            <div class="reply" id="scroll">
+                <div class="reply-list">
+                    <img src="img/h5.jpg" class="reply-head">
+
+                    <div class="reply-con clearfix">
+                        <p class="reply-word">看我</p>
+                        <a href="javascript:;" data-id="<?php echo $value->id; ?>"
+                           class="page10-heart pull-right dianzan">9度啤葩说！</a>
+                        <button type="button" data-id="<?php echo $value->id; ?>" class="reply-btn pull-right"></button>
+                    </div>
+                </div>
+                <div class="reply-list-reply">
+                    <img src="img/h5.jpg" class="reply-head">
+
+                    <div class="reply-con clearfix">
+                        <p class="reply-word">九都 回复 啤葩 : 说得好！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page10-btns clearfix">
+            <div class="page10-btn-w pull-left">
+                <a href="http://evt.dianping.com/midas/1activities/3621/index.html" onclick="MtaH5.clickStat('3')"
+                   class="page10-bottom-btn page9-btn2"></a>
+            </div>
+            <div class="page10-btn-w pull-right">
+                <a href="javascript:;" class="page10-bottom-btn page9-btn3"></a>
+            </div>
+        </div>
+        <div class="page10-fu"></div>
+    </div>
+    <div class="page pageshare hide">
+        <div class="share"></div>
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/touch.min.js"></script>
+<script type="text/javascript" src="js/shake.js"></script>
+<script type="text/javascript" src="js/9c.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var myscroll = new IScroll("#wrapper");
+
+        $('.page10-btn').on('click', function () {
+            var content = $.trim($('#content').val());
+            var touser = $('#touser').val();
+            if (content == '') {
+                alert('写点什么吧!');
+                return false;
+            }
+            $.ajax({
+                'type': 'post',
+                'dataType': 'json',
+                'url': "<?php echo site_url('comment'); ?>",
+                'data': {'content': content, 'touser': touser},
+                'success': function (response) {
+                    if (response.code == 'success') {
+                        $('.page10-fu').show();
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            });
+        });
+
+        $('.dianzan').on('tap', function () {
+            var that = $(this);
+            $.ajax({
+                'type': 'post',
+                'dataType': 'json',
+                'url': "<?php echo site_url('zan'); ?>",
+                'data': {'id': that.data('id')},
+                'success': function (response) {
+                    if (response.code == 'success') {
+                        that.addClass('active');
+                    }
+                }
+            });
+        });
+
+        $('.reply-btn').on('click', function () {
+            var id = $(this).data('id');
+            $('#touser').val(id);
+            $(".page10-msg").focus();
+        });
+    });
+</script>
+</body>
+</html>

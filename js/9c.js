@@ -8,6 +8,43 @@ $(function () {
     //document.getElementById("audio-bg").play();
     document.addEventListener("WeixinJSBridgeReady", function () {
     }, false);
+    var bgm = document.createElement("audio");
+    bgm.src = "audio/bg.mp3";
+    bgm.preload = "auto";
+    bgm.volume = "0.8";
+    document.body.appendChild(bgm);
+    var audio1_1 = document.createElement("audio");
+    audio1_1.src = "audio/1-1.mp3";
+    audio1_1.preload = "auto";
+    document.getElementsByClassName("page1")[0].appendChild(audio1_1);
+    var audio1_2 = document.createElement("audio");
+    audio1_2.src = "audio/1-2.mp3";
+    audio1_2.preload = "auto";
+    document.getElementsByClassName("page1")[0].appendChild(audio1_2);
+    var audio2_1 = document.createElement("audio");
+    audio2_1.src = "audio/2-1.mp3";
+    audio2_1.preload = "auto";
+    document.getElementsByClassName("page2")[0].appendChild(audio2_1);
+    var audio2_2 = document.createElement("audio");
+    audio2_2.src = "audio/2-2.mp3";
+    audio2_2.preload = "auto";
+    document.getElementsByClassName("page2")[0].appendChild(audio2_2);
+    var audio3 = document.createElement("audio");
+    audio3.src = "audio/3.mp3";
+    audio3.preload = "auto";
+    document.getElementsByClassName("page3")[0].appendChild(audio3);
+    var audio3_2 = document.createElement("audio");
+    audio3_2.src = "audio/3-2.mp3";
+    audio3_2.preload = "auto";
+    document.getElementsByClassName("page3")[0].appendChild(audio3_2);
+    var audio4 = document.createElement("audio");
+    audio4.src = "audio/4.mp3";
+    audio4.preload = "auto";
+    document.getElementsByClassName("page4")[0].appendChild(audio4);
+    var audio5 = document.createElement("audio");
+    audio5.src = "audio/5.mp3";
+    audio5.preload = "auto";
+    document.body.appendChild(audio5);
     PreLoadImg([
         "img/arrow.png",
         "img/bottle-man1.png",
@@ -107,32 +144,31 @@ $(function () {
             $(".page1").fadeIn(400);
         });
         setTimeout(function () {
-            document.getElementById("audio-bg").play();
-            document.getElementById("audio1-1").play();
-            document.getElementById("audio1-2").play();
+            bgm.play();
+            audio1_1.play();
+            audio1_2.play();
             WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                document.getElementById("audio-bg").play();
-                document.getElementById("audio1-1").play();
-                document.getElementById("audio1-2").play();
+                bgm.play();
+                audio1_1.play();
+                audio1_2.play();
             })
         }, 200);
-
         setTimeout(page1,6200);
         document.addEventListener("WeixinJSBridgeReady", function () {
             WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                document.getElementById('audio-bg').play();
-                document.getElementById('audio1-1').play();
-                document.getElementById('audio1-2').play();
+                bgm.play();
+                audio1_1.play();
+                audio1_2.play();
             });
         }, false);
     },$("#progress"));
       function page1(){
-          document.getElementById("audio1-1").pause();
-          document.getElementById("audio1-2").pause();
+          audio1_1.pause();
+          audio1_2.pause();
           setTimeout(function (){
-              document.getElementById("audio2-1").play();
+              audio2_1.play();
               WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                  document.getElementById("audio2-1").play();
+                  audio2_1.play();
               })
           }, 1800);
           var page1_bottleTop = 9, page1_bottleLeft = 28, g_bottle=-12, page1_bottleOpa=0;
@@ -172,12 +208,12 @@ $(function () {
                 threshold: 10
             });
             myShakeEvent.start();
-            //window.addEventListener('shake', shakeEventDidOccur, false);
-            window.addEventListener('click', shakeEventDidOccur, false);
+            window.addEventListener('shake', shakeEventDidOccur, false);
+            //window.addEventListener('click', shakeEventDidOccur, false);
             function shakeEventDidOccur() {
                 $("#page2-yao").hide();
                 $("#page2-bottle").removeClass("bottleRotate");
-                document.getElementById("audio2-2").play();
+                audio2_2.play();
                 var pi_bg_po=5, pi_position=["3%","4%","14%","29%","37%","37%"];
                 $("#page2-shuo").show();
                 var pipaMove = setInterval(function () {
@@ -193,17 +229,17 @@ $(function () {
                 setTimeout(function () {
                     $("#page2-cai").addClass("page2-caiMove");
                 }, 100);
-                //window.removeEventListener('shake', shakeEventDidOccur, false);
-                window.removeEventListener('click', shakeEventDidOccur, false);
+                window.removeEventListener('shake', shakeEventDidOccur, false);
+                //window.removeEventListener('click', shakeEventDidOccur, false);
                 WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                    document.getElementById("audio2-2").play();
+                    audio2_2.play();
                 });
             }
         },6600);
         /*盖*/
         var page2_gai_left= 48, page2_gai_top=55, g_gai=-2;
         setTimeout(function () {
-            $("#page2-gai").css("opacity" , "1")
+            $("#page2-gai").css("opacity" , "1");
             var page2_gaiMove=setInterval(function () {
                 $("#page2-gai").css({
                     left : page2_gai_left +"%",
@@ -230,11 +266,11 @@ $(function () {
 
     function page3(){
         touch.on(".page3","swipeleft", function (){
-            document.getElementById("page3-audio").src=" ";
-            document.getElementById("page3-audio2").src=" ";
+            audio3.src=" ";
+            audio3_2.src=" ";
             $(".page3").fadeOut(400);
             $(".page4").stop().delay(300).fadeIn(400);
-            var audio4 = document.getElementById("audio4"), audio4Time=0;
+            var audio4Time=0;
             audio4.play();
             audio4.addEventListener("ended",function (){
                 audio4.play();
@@ -246,38 +282,37 @@ $(function () {
         });
 
     }
-    var page5audio= document.getElementById("page5-audio");
         touch.on(".page4","swipeleft", function (){
-            document.getElementById("audio4").pause();
+            audio4.pause();
             $(".page4").fadeOut(400);
             $(".page5").stop().delay(300).fadeIn(400);
                 setTimeout(function (){
                     $(".page5-con").fadeIn(300);
-                    page5audio.play();
+                    audio5.play();
                     WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                        page5audio.play();
+                        audio5.play();
                     })
                 }, 3300)
         });
         touch.on(".page5","swipeleft", function (){
-            page5audio.pause();
+            audio5.pause();
             $(".page5").fadeOut(400);
             $(".page6").stop().fadeIn(400);
-            page5audio.play();
+            audio5.play();
         });
         touch.on(".page6","swipeleft", function (){
-            page5audio.pause();
+            audio5.pause();
             $(".page6").fadeOut(400);
             $(".page7").stop().fadeIn(400);
-            page5audio.play();
+            audio5.play();
         });
 
 
         touch.on(".page7","swipeleft", function (){
-            page5audio.pause();
+            audio5.pause();
             $(".page7").fadeOut(400);
             $(".page8").stop().fadeIn(400);
-            page5audio.play();
+            audio5.play();
         });
 
         touch.on(".page8","swipeleft", function (){
@@ -297,15 +332,14 @@ $(function () {
     $("#page3-msg-po").addClass("page3-msg-po-move");
     $("#page3-msg").on("click", function () {
         $("#page3-msg-red").hide();
-        var page3Audio= document.getElementById("page3-audio");
-        page3Audio.play();
-        page3Audio.addEventListener("ended", function () {
+        audio3.play();
+        audio3.addEventListener("ended", function () {
             $("#page3-msg-po").removeClass("page3-msg-po-move");
-        })
+        });
         setTimeout(function (){
-            document.getElementById("page3-audio2").play();
+            audio3_2.play();
             WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                document.getElementById("page3-audio2").play();
+                audio3_2.play();
             })
         },6500)
     });

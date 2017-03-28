@@ -384,7 +384,11 @@
         transform: rotate(0deg);}
 
 }
-
+#page2-bottle.bottleRotate.noRotate{
+    -webkit-animation:  none;
+    -o-animation:  none;
+    animation: none;
+}
 #page2-gai{width: 30px; height: 24px; position: absolute; opacity: 0;
     left: 48%; top: 55%;
     background: url("../img/page2-gai.png") no-repeat; -webkit-background-size: 100% 100%; background-size: 100% 100%;

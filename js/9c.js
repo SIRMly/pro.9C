@@ -5,46 +5,29 @@ $(function () {
     document.ontouchmove = function (e) {
         e.preventDefault();
     };
+    var audioSrcs = [
+        "audio/bg.mp3",
+        "audio/1-1.mp3",
+        "audio/1-2.mp3",
+        "audio/2-1.mp3",
+        "audio/2-2.mp3",
+        "audio/3.mp3",
+        "audio/3-2.mp3",
+        "audio/4.mp3",
+        "audio/5.mp3"
+    ];
     //document.getElementById("audio-bg").play();
     document.addEventListener("WeixinJSBridgeReady", function () {
     }, false);
-    var bgm = document.createElement("audio");
-    bgm.src = "audio/bg.mp3";
-    bgm.preload = "auto";
-    bgm.volume = "0.8";
-    document.body.appendChild(bgm);
-    var audio1_1 = document.createElement("audio");
-    audio1_1.src = "audio/1-1.mp3";
-    audio1_1.preload = "auto";
-    document.getElementsByClassName("page1")[0].appendChild(audio1_1);
-    var audio1_2 = document.createElement("audio");
-    audio1_2.src = "audio/1-2.mp3";
-    audio1_2.preload = "auto";
-    document.getElementsByClassName("page1")[0].appendChild(audio1_2);
-    var audio2_1 = document.createElement("audio");
-    audio2_1.src = "audio/2-1.mp3";
-    audio2_1.preload = "auto";
-    document.getElementsByClassName("page2")[0].appendChild(audio2_1);
-    var audio2_2 = document.createElement("audio");
-    audio2_2.src = "audio/2-2.mp3";
-    audio2_2.preload = "auto";
-    document.getElementsByClassName("page2")[0].appendChild(audio2_2);
-    var audio3 = document.createElement("audio");
-    audio3.src = "audio/3.mp3";
-    audio3.preload = "auto";
-    document.getElementsByClassName("page3")[0].appendChild(audio3);
-    var audio3_2 = document.createElement("audio");
-    audio3_2.src = "audio/3-2.mp3";
-    audio3_2.preload = "auto";
-    document.getElementsByClassName("page3")[0].appendChild(audio3_2);
-    var audio4 = document.createElement("audio");
-    audio4.src = "audio/4.mp3";
-    audio4.preload = "auto";
-    document.getElementsByClassName("page4")[0].appendChild(audio4);
-    var audio5 = document.createElement("audio");
-    audio5.src = "audio/5.mp3";
-    audio5.preload = "auto";
-    document.body.appendChild(audio5);
+    var bgm = document.getElementById("bgm"),
+        audio1_1 = document.getElementById("audio1-1"),
+        audio1_2 = document.getElementById("audio1-2"),
+        audio2_1 = document.getElementById("audio2-1"),
+        audio2_2 = document.getElementById("audio2-2"),
+        audio3 = document.getElementById("audio3"),
+        audio3_2 = document.getElementById("audio3-2"),
+        audio4 = document.getElementById("audio4"),
+        audio5 = document.getElementById("audio5");
     PreLoadImg([
         "img/arrow.png",
         "img/bottle-man1.png",
@@ -140,27 +123,39 @@ $(function () {
         "img/sweet1.png",
         "img/sweet2.png"
     ], function () {
-        $(".loading").fadeOut(200, function () {
-            $(".page1").fadeIn(400);
-        });
-        setTimeout(function () {
-            bgm.play();
-            audio1_1.play();
-            audio1_2.play();
-            WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                bgm.play();
-                audio1_1.play();
-                audio1_2.play();
-            })
-        }, 200);
-        setTimeout(page1,6200);
-        document.addEventListener("WeixinJSBridgeReady", function () {
-            WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                bgm.play();
-                audio1_1.play();
-                audio1_2.play();
-            });
-        }, false);
+        var nowWidth = 91;
+        for (var i=0; i<audioSrcs.length; i++){
+            var audio = document.createElement("audio");
+            audio.src = audioSrcs[i];
+            audio.preload = "auto";
+            audio.oncanplaythrough = function (){
+                nowWidth++;
+                $("#progress").width(nowWidth+"%");
+                if(nowWidth === 100){
+                    $(".loading").fadeOut(200, function () {
+                        $(".page1").fadeIn(400);
+                    });
+                    setTimeout(function () {
+                        bgm.play();
+                        audio1_1.play();
+                        audio1_2.play();
+                        WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                            bgm.play();
+                            audio1_1.play();
+                            audio1_2.play();
+                        })
+                    }, 200);
+                    setTimeout(page1,6200);
+                    document.addEventListener("WeixinJSBridgeReady", function () {
+                        WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                            bgm.play();
+                            audio1_1.play();
+                            audio1_2.play();
+                        });
+                    }, false);
+                }
+            };
+        }
     },$("#progress"));
       function page1(){
           audio1_1.pause();
@@ -212,8 +207,7 @@ $(function () {
             //window.addEventListener('click', shakeEventDidOccur, false);
             function shakeEventDidOccur() {
                 $("#page2-yao").hide();
-                $("#page2-bottle").removeClass("bottleRotate");
-                audio2_2.play();
+                $("#page2-bottle").addClass("noRotate");
                 var pi_bg_po=5, pi_position=["3%","4%","14%","29%","37%","37%"];
                 $("#page2-shuo").show();
                 var pipaMove = setInterval(function () {
@@ -231,6 +225,7 @@ $(function () {
                 }, 100);
                 window.removeEventListener('shake', shakeEventDidOccur, false);
                 //window.removeEventListener('click', shakeEventDidOccur, false);
+                audio2_2.play();
                 WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
                     audio2_2.play();
                 });
@@ -354,7 +349,7 @@ $(function () {
         $(this).hide();
     });
 
-    function PreLoadImg(sources,  callback, proEle) {
+    function PreLoadImg(sources, callback, proEle) {
         var count = 0,
             images = {},
             imgNum = 0;
@@ -365,7 +360,7 @@ $(function () {
             images[src] = new Image();
             images[src].onload = function () {
                 if (proEle !== undefined) {
-                    var progress = ~~((count + 1) * 100 / sources.length);
+                    var progress = ~~((count + 1) * 100 / sources.length)-9;
                     proEle.width(progress+"%");
                 }
                 if (++count >= imgNum) {

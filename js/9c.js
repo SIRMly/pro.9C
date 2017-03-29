@@ -19,15 +19,15 @@ $(function () {
     //document.getElementById("audio-bg").play();
     document.addEventListener("WeixinJSBridgeReady", function () {
     }, false);
-    var bgm = document.getElementById("bgm"),
-        audio1_1 = document.getElementById("audio1-1"),
-        audio1_2 = document.getElementById("audio1-2"),
-        audio2_1 = document.getElementById("audio2-1"),
-        audio2_2 = document.getElementById("audio2-2"),
-        audio3 = document.getElementById("audio3"),
-        audio3_2 = document.getElementById("audio3-2"),
-        audio4 = document.getElementById("audio4"),
-        audio5 = document.getElementById("audio5");
+    var bgm,
+        audio1_1,
+        audio1_2,
+        audio2_1,
+        audio2_2,
+        audio3,
+        audio3_2,
+        audio4,
+        audio5;
     PreLoadImg([
         "img/arrow.png",
         "img/bottle-man1.png",
@@ -123,38 +123,54 @@ $(function () {
         "img/sweet1.png",
         "img/sweet2.png"
     ], function () {
-        var nowWidth = 91;
+        var nowWidth = 91,audioThis;
         for (var i=0; i<audioSrcs.length; i++){
             var audio = document.createElement("audio");
             audio.src = audioSrcs[i];
             audio.preload = "auto";
-            audio.oncanplaythrough = function (){
-                nowWidth++;
-                $("#progress").width(nowWidth+"%");
-                if(nowWidth === 100){
-                    $(".loading").fadeOut(200, function () {
-                        $(".page1").fadeIn(400);
-                    });
-                    setTimeout(function () {
-                        bgm.play();
-                        audio1_1.play();
-                        audio1_2.play();
-                        WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                            bgm.play();
-                            audio1_1.play();
-                            audio1_2.play();
-                        })
-                    }, 200);
-                    setTimeout(page1,6200);
-                    document.addEventListener("WeixinJSBridgeReady", function () {
-                        WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                            bgm.play();
-                            audio1_1.play();
-                            audio1_2.play();
+            audio.id = "audio" + i;
+            //console.log(audio);
+            //audioThis = audio;
+            (function(audioThis){
+                audioThis.onloadedmetadata = function (){
+                    nowWidth++;
+                    $("#progress").width(nowWidth+"%");
+                    console.log(audioThis);
+                    document.body.appendChild(audioThis);
+                    if(nowWidth === 100){
+                        bgm = document.getElementById("audio0"),
+                            audio1_1 = document.getElementById("audio1"),
+                            audio1_2 = document.getElementById("audio2"),
+                            audio2_1 = document.getElementById("audio3"),
+                            audio2_2 = document.getElementById("audio4"),
+                            audio3 = document.getElementById("audio5"),
+                            audio3_2 = document.getElementById("audio6"),
+                            audio4 = document.getElementById("audio7"),
+                            audio5 = document.getElementById("audio8");
+                        $(".loading").fadeOut(200, function () {
+                            $(".page1").fadeIn(400);
                         });
-                    }, false);
-                }
-            };
+                        setTimeout(function () {
+                            bgm.play();
+                            audio1_1.play();
+                            audio1_2.play();
+                            WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                                bgm.play();
+                                audio1_1.play();
+                                audio1_2.play();
+                            })
+                        }, 200);
+                        setTimeout(page1,6200);
+                        document.addEventListener("WeixinJSBridgeReady", function () {
+                            WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                                bgm.play();
+                                audio1_1.play();
+                                audio1_2.play();
+                            });
+                        }, false);
+                    }
+                };
+            })(audio);
         }
     },$("#progress"));
       function page1(){
